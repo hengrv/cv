@@ -14,13 +14,4 @@ jobs:
           latexmk_use_xelatex: true
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode -8bit
       - name: Upload PDF file
-        uses: actions/upload-artifact@v3
-        with:
-          name: PDF
-          path: main.pdf
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: main.pdf
-          name: pdf
-          tag_name: pdf
+        run: "git config --local user.email \"github-actions@github.com\"\ngit config --local user.name \"github-actions\"\ngit add main.pdf\ngit commit -a -m \"Add main.pdf\"\ngit push \n"
