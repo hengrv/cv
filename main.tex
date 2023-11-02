@@ -12,11 +12,12 @@
 \usepackage{enumitem}
 \usepackage[symbol]{footmisc}
 
+\definecolor{Headings}{HTML}{B1D8B7}
 \titleformat{\section}
 {\Large\bfseries}
 {}
 {0em}
-{}[\color{JungleGreen}{\titlerule}]
+{}[\color{Headings}{\titlerule[1.2pt]}]
 
 \titleformat{\subsection}
 {\bfseries}
@@ -24,14 +25,14 @@
 {0em}
 {}
 
-\definecolor{grey}{gray}{0.85}
+\definecolor{grey}{gray}{0.95}
 
 \renewcommand{\maketitle}{
 	\begin{center}
 		{\huge\bfseries HENRY GROVES\\}
 		\vspace{.5em}
 		% {\Large\bfseries Pontefract New College Student}\\\vspace{.25em}
-		{\large hengro44@gmail.com | 07392 072855}
+		{\large hengro44@gmail.com | 07392 072855 | github.com/henrygrv}
 	\end{center}
 }
 
@@ -43,13 +44,20 @@
 
 \begin{minipage}{0.97\textwidth}
 	\section{Education}
-	\subsection{A Levels and Further Study, Pontefract New College, Pontefract \hfill 2021-2023}
+	\subsection{Further Study, University of Newcastle upon Tyne \hfill 2023-2027}
+	\vspace{-.2cm}
+	\begin{itemize}
+		\item \textbf{M.Comp.} (Hons) Computer Science
+	\end{itemize}
+	\vspace{-.6cm}
+	\subsection{A Levels, Pontefract New College, Pontefract \hfill 2021-2023}
 	\vspace{-0.2cm}
 	\begin{itemize}
 		\item {\bfseries A Levels:} Mathematics (\textbf{A*}), Further Mathematics (\textbf{A}), Physics (\textbf{A}), Computer Science (\textbf{A})
+		      \vspace{-.1cm}
 		\item {\bfseries EPQ: } ``To what extent will quantum computing replace high performance computing in computational biology?'' (\textbf{A})
 	\end{itemize}
-	\vspace{-.2cm}
+	\vspace{-.4cm}
 	\normalsize
 	\vspace{-.2cm}
 	\subsection{GCSEs, Carleton High School, Pontefract, West Yorkshire \hfill 2016-2021}
@@ -63,9 +71,9 @@
 	\end{multicols}
 
 \end{minipage}
-\vspace{.4cm}
+\vspace{.3cm}
 
-\begin{minipage}{0.6\textwidth}
+\begin{minipage}{0.65\textwidth}
 	\raggedright
 	\section{Projects}
 	\subsection{``Study Room'' - A real-time productivity application}
@@ -73,36 +81,67 @@
 	The application is a customisable productivity workspace with a module system to tailor to individual user's needs.
 	Built with a React.JS and TypeScript front-end, Next.JS / tRPC and TypeScript back-end, with MongoDB as the core database.
 	\vspace{.3cm}
+
+	% re write this
 	\subsection{``CLAuDE'' - Accessible and modular GCM (Global Climate Model)}
-	Provided advice on project structure and version control for the CLAuDE (Climate Analysis using Digital Estimations) GCM, a intuitive and simple model, written in Python and MatPlotLib.
-	It aims to make climate modelling more accessible and provide a simple interface to create custom models.
+	Project manage a large-scale open-source climate model CLAuDE (Climate Analysis using Digital Estimations), written in Python.
+	The project's focus is on simplicity and approachability for use as a learning tool.
+	Manage contributions, versioning, packaging and community engagement, whilst also writing simulation code and CI/CD pipelines.
+	% Provided advice on project structure and version control for the CLAuDE (Climate Analysis using Digital Estimations) GCM, a intuitive and simple model, written in Python and MatPlotLib.
+	% It aims to make climate modelling more accessible and provide a simple interface to create custom models.
 
 	\vspace{.3cm}
 	\section{Work Experience}
-	\subsection{Hillside Fisheries, Ackworth, Pontefract\hfill June 2021-September 2023}
-	Work in the kitchen and on front of house serving and preparing fresh fish and chips. Role includes serving customers, taking payments and using kitchen equipment to prepare food. Developed culinary skills along with conversational and transactional skills. Working in a high pressure environment requires good time management and task prioritisation.
 
-	\vspace{.3cm}
+	\subsection{\textit{Data Analyst}, Northern Powergrid (System Forecasting) \hfill May-August 2023}
+
+	\begin{itemize}
+		\item Combined numerous data sources with SQL and Python scripting to design and implement a statistical model for predicting the demand of almost 4 million customers on low-voltage electrical distribution networks.\vspace{-.1cm}
+		      % \item \vspace{-.1cm}
+		\item Created a dashboard in Excel from the output, and created visualizations for presentations to the wider team and executives. \vspace{-.1cm}
+		\item Worked with other colleagues on regulatory submissions under very tight deadlines whilst also working on the model.
+	\end{itemize}
+
+	\vspace{-.5cm}
+
+
+
 
 	\subsection{Northern Powergrid - Investment Planning, Castleford \hfill May 2022}
-	Developed VBA macros in Microsoft Excel to digest financial spend data and create automatic monthly summaries and charts as part of 1 week work experience.
-	\vspace{.3cm}
+	\begin{itemize}
+		\item Developed VBA macros in Microsoft Excel to digest financial spend data and create automatic monthly summaries and charts as part of 1 week work experience.
+	\end{itemize}
+	\vspace{-.5cm}
 
-	\section{Other Relevant Experience}
+
+
+	\subsection{Hillside Fisheries, Ackworth, Pontefract\hfill June 2021-September 2023}
+	\vspace{-.1cm}
+	\begin{itemize}
+		\item Work in the kitchen and on front of house serving and preparing fresh fish and chips. Role includes serving customers, taking payments and using kitchen equipment to prepare food.
+		      \vspace{-.1cm}
+		\item Developed culinary skills along with conversational and transactional skills. Working in a high pressure environment requires good time management and task prioritisation.
+	\end{itemize}
+	\vspace{-.5cm}
+
+
+
+
+	\section{Other Experience}
 	\subsection{Carleton High School, Pontefract}
 	Elected as Head Boy in Year 11. Worked with the Senior Leadership Team to promote the school and support students. Developed leadership and team-working skills. Spoke at numerous events such as open evenings and Year 7 transitional activities.
 
-	\vspace{.3cm}
+	% \vspace{.3cm}
 
 	\subsection{Outwood Primary Academy Bell Lane, Ackworth}
 	Volunteered across multiple year groups assisting with arithmetic and literary support, along with information technology lessons.
-
-	\vspace{.3cm}
-	\subsection{Five Towns Christian Fellowship, Pontefract}
-	Volunteer in the audio-visual team, providing multimedia requirements for Sunday services and other events.
+	%
+	% \vspace{.3cm}
+	% \subsection{Five Towns Christian Fellowship, Pontefract}
+	% Volunteer in the audio-visual team, providing multimedia requirements for Sunday services and other events.
 
 \end{minipage}
-\hspace{1cm}
+\hspace{0.5cm}
 \begin{minipage}{0.3\textwidth}
 	\raggedright
 	\begin{tcolorbox}[colback=grey]
@@ -113,35 +152,37 @@
 			\item Problem Solving
 			\item Attention to Detail
 			\item Effective Communication
-			\item Customer Service
-			\item Programming
+			\item Procedural Thinking
 			\item Software Development
+			\item Customer Service
+
 		\end{itemize}
 
 		\subsection{Programming Languages / Frameworks:}
 		\begin{itemize}[leftmargin=*]
 
 			\item Python 3
-			\item JavaScript / TypeScript
+			\item TypeScript/JavaScript
+			\item Rust
+			\item C/C++
 			\item React.JS
 			\item Next.JS 12/13
-			\item Rust
 			\item Node.JS
 			\item Java
+
 
 		\end{itemize}
 
 		\subsection{Additional Technologies:}
 		\begin{itemize}[leftmargin=*]
-			\item Git / Github
+			\item Git / GitHub
+			\item GNU/Linux
 			\item LaTeX
-			\item Vim
 			\item MongoDB
 			\item SQL (PostGreSQL)
 			\item HTML/CSS
 			\item tailwindcss
-			\item Access
-			\item Excel
+			\item Access / Excel
 		\end{itemize}
 
 	\end{tcolorbox}
