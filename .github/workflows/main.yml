@@ -14,6 +14,6 @@ jobs:
           root_file: main.tex
           latexmk_shell_escape: true
           latexmk_use_xelatex: true
-          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode -8bit
+          args: -pdf -file-line-error -halt-on-error -jobname=cv -interaction=nonstopmode -8bit
       - name: Upload PDF file
         run: "git config --local user.email \"github-actions@github.com\"\ngit config --local user.name \"github-actions\"\ngit add main.pdf\ngit commit -a -m \"Add main.pdf\"\ngit push \n"

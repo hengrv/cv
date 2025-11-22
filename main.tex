@@ -1,5 +1,4 @@
 \documentclass[9pt]{extarticle}
-
 \usepackage{multicol}
 \usepackage{titlesec}
 \usepackage[margin=0.5in]{geometry}
@@ -11,8 +10,16 @@
 \usepackage{tcolorbox}
 \usepackage{enumitem}
 \usepackage[symbol]{footmisc}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{fontawesome5} % Icons
+\usetikzlibrary{calc}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage[hidelinks, final]{hyperref}
 
-\definecolor{Headings}{HTML}{B1D8B7}
+\definecolor{Headings}{HTML}{577359}
 \titleformat{\section}
 {\Large\bfseries}
 {}
@@ -26,13 +33,58 @@
 {}
 
 \definecolor{grey}{gray}{0.95}
+\definecolor{hg}{HTML}{577359}
+
+\setlist[itemize]{leftmargin=*, label={\color{gray}\scriptsize\textbullet}, nosep, itemsep=3pt, topsep=3pt, leftmargin=1em}
+
+
+ % Counter to track timeline entries
+\newcounter{cvcount}
+
+% Command to reset counter at start of section
+\newcommand{\resetcvcount}{\setcounter{cvcount}{0}}
+
+% The Dot Command
+% 1. Increments counter
+% 2. Names the node "tls-<count>" for start
+% 3. Names the node "tle" (continuously overwritten) to track the end
+\newcommand{\timelinedot}{%
+    \stepcounter{cvcount}%
+    \begin{tikzpicture}[remember picture, overlay, baseline=-0.7ex]
+      \node[circle, fill=hg, inner sep=1pt] (currentdot) {};
+        % If first entry, mark as start
+        \ifnum\value{cvcount}=1
+            \node[coordinate] (tls) at (currentdot) {};
+        \fi
+        % Mark every entry as potential end (last one wins)
+        \node[coordinate] (tle) at (currentdot) {};
+    \end{tikzpicture}%
+}
+
+% Command to draw the line
+% Run this immediately AFTER the table closes
+\newcommand{\drawtimeline}{%
+    \begin{tikzpicture}[remember picture, overlay]
+        \draw[hg, line width=0.5pt] (tls) -- (tle);
+    \end{tikzpicture}%
+}
+
+% Experience Entry Command
+% Args: {Title}{Company}{Bullets}
+\newcommand{\cventry}[2]{
+    \timelinedot & 
+    \textbf{#1} \\    
+    & \vspace{-4pt}
+      \begin{itemize} #2 \end{itemize} \\ 
+    \vspace{4pt} & \\ % Space between jobs
+}
 
 \renewcommand{\maketitle}{
 	\begin{center}
 		{\huge\bfseries HENRY GROVES\\}
 		\vspace{.5em}
 		% {\Large\bfseries Pontefract New College Student}\\\vspace{.25em}
-		{\large hengro44@gmail.com | 07392 072855 | github.com/hengrv}
+		{\large hengro44@gmail.com | 07392 072855 | \href{https://github.com/hengrv}{github.com/hengrv} | \href{https://www.linkedin.com/in/hengrv/}{linkedin.com/in/hengrv}}
 	\end{center}
 }
 
@@ -42,26 +94,26 @@
 \thispagestyle{empty}
 \maketitle
 
+\vspace{-.2cm}
 \begin{minipage}{0.97\textwidth}
 	\section{Education}
 	\subsection{Further Study, University of Newcastle upon Tyne \hfill 2023-2027}
 	\vspace{-.2cm}
 	\begin{itemize}
-		\item \textbf{M.Comp.} (Hons) Computer Science
+		\item \textbf{M.Sc.+B.Sc.} (Hons) Computer Science
 	\end{itemize}
-	\vspace{-.6cm}
+	\vspace{-.4cm}
 	\subsection{A Levels, Pontefract New College, Pontefract \hfill 2021-2023}
 	\vspace{-0.2cm}
 	\begin{itemize}
-		\item {\bfseries A Levels:} Mathematics (\textbf{A*}), Further Mathematics (\textbf{A}), Physics (\textbf{A}), Computer Science (\textbf{A})
-		      \vspace{-.1cm}
+		\item {\bfseries A Levels:} Mathematics (\textbf{A*}), Further Mathematics (\textbf{A}), Computer Science (\textbf{A}), Physics (\textbf{A})		      \vspace{-.1cm}
 		\item {\bfseries EPQ: } ``To what extent will quantum computing replace high performance computing in computational biology?'' (\textbf{A})
 	\end{itemize}
 	\vspace{-.4cm}
 	\normalsize
-	\vspace{-.2cm}
+	% \vspace{-.1 c m}
 	\subsection{GCSEs, Carleton High School, Pontefract, West Yorkshire \hfill 2016-2021}
-	\vspace{-0.5cm}
+	\vspace{-0.6cm}
 	\begin{multicols}{3}
 		\begin{itemize}
 			% Grades
@@ -71,18 +123,55 @@
 	\end{multicols}
 
 \end{minipage}
-\vspace{.3cm}
+
+\vspace{.4cm}
 
 \begin{minipage}{0.65\textwidth}
 	\raggedright
-	\section{Projects}
-	\subsection{``Study Room'' - A real-time productivity application}
-	Developed a full-stack, real-time application as part of A-Level Computer Science.
-	The application is a customisable productivity workspace with a module system to tailor to individual user's needs.
-	Built with a React.JS and TypeScript front-end, Next.JS / tRPC and TypeScript back-end, with MongoDB as the core database.
-	\vspace{.3cm}
 
-	% re write this
+	\section{Work Experience}
+	\subsection{\large Northern Powergrid}
+
+	\resetcvcount % Start tracking dots
+	% Col 1: Narrow, Centered (for dot). Col 2: Content
+	\begin{tabularx}{\textwidth}{@{} >{\centering}p{1.5em} @{} X @{}}
+
+		% JOB 1
+		\cventry{\textit{Data Scientist (DSO)}\hfill May-September 2025}
+		{
+			\item Built a graph-based \textbf{simulation tool} to model high-voltage power networks, in both normal and abnormal conditions.
+			\item Used historical and real-time data to simulate network and asset performance with a bottom-up approach, rather than a top-down approach previously used for such analysis.
+			\item Tool uses future scenarios to account for the different ways the power grid may evolve looking to 2050.
+		}
+
+		% JOB 2
+		\cventry{\textit{Data Scientist (DSO)}\hfill May-September 2024}
+		{
+			\item Designed and architected an end-to-end \textbf{machine learning} solution to predict short-term distribution substation load.
+			\item Built a \textbf{robust}, \textbf{efficient} and \textbf{scalable} data pipeline to ingest \textbf{half-hourly} meter readings from $\sim$ 800 substations, filling gaps using AKIMA and lag-based methods.
+			\item Used DTW K-Means \textbf{clustering} to find load profiles; proved that models trained on one member of the cluster can effectively predict all members.
+			\item Designed and tuned both \textbf{TCN} and \textbf{BiTCN} neural-networks, for each cluster, with carefully selected \textbf{exogenous features} boosting model performance.
+			\item Wrote a formal research paper outlining my work and findings to present at \textit{CIRED}.\vspace{-.15cm}		}
+
+		% JOB 3
+		\cventry{\textit{Data Analyst (System Forecasting)}\hfill May-August 2023}
+		{
+
+			\item Combined numerous data sources with \textbf{SQL} and \textbf{Python} scripting to design and implement a statistical model for predicting the demand of almost \textbf{4 million} customers on low-voltage electrical distribution networks.
+			\item Created a dashboard in Excel from the output, and created visualizations for presentations to the wider team and executives.
+			\item Extracted and processed data for, and collaborated with other colleagues on regulatory submissions under very tight deadlines whilst also working on the model.
+		}
+	\end{tabularx}
+
+	\drawtimeline
+
+	\vspace{-.7cm}
+
+	\section{Projects}
+	\subsection{``Biggmarket'' - Item swapping app promoting sustainability}
+	Built a full-stack item-swapping web application designed to promote sustainable consumption. Built using Next.js, TypeScript, tRPC, Tailwind CSS and backed by a PostgreSQL with Prisma, the app uses a ``swipe left-right'' interface, with real-time user messaging, authentication via Google OAuth, and a comprehensive user review system.
+	\vspace{-.15cm}
+
 	\subsection{``CLAuDE'' - Accessible and modular GCM (Global Climate Model)}
 	Project manage a large-scale open-source climate model CLAuDE (Climate Analysis using Digital Estimations), written in Python.
 	The project's focus is on simplicity and approachability for use as a learning tool.
@@ -90,24 +179,8 @@
 	% Provided advice on project structure and version control for the CLAuDE (Climate Analysis using Digital Estimations) GCM, a intuitive and simple model, written in Python and MatPlotLib.
 	% It aims to make climate modelling more accessible and provide a simple interface to create custom models.
 
-	\vspace{.3cm}
-	\section{Work Experience}
 
-	\subsection{\textit{Data Scientist}, Northern Powergrid (DSO)\hfill May-September 2024}
-	% \begin{item}
-	%       \item Designed and Architected an end-to-end solution
-	% \end{item}
-
-	\subsection{\textit{Data Analyst}, Northern Powergrid (System Forecasting) \hfill May-August 2023}
-
-	\begin{itemize}
-		\item Combined numerous data sources with SQL and Python scripting to design and implement a statistical model for predicting the demand of almost 4 million customers on low-voltage electrical distribution networks.\vspace{-.1cm}
-		      % \item \vspace{-.1cm}
-		\item Created a dashboard in Excel from the output, and created visualizations for presentations to the wider team and executives. \vspace{-.1cm}
-		\item Extracted and processed data for, and worked with other colleagues on regulatory submissions under very tight deadlines whilst also working on the model.
-	\end{itemize}
-
-	\vspace{-.5cm}
+	% \vspace{-.5cm}
 
 
 
@@ -120,22 +193,22 @@
 
 
 
-	\subsection{Hillside Fisheries, Ackworth, Pontefract\hfill June 2021-September 2023}
-	\vspace{-.1cm}
-	\begin{itemize}
-		\item Work in the kitchen and on front of house serving and preparing fresh fish and chips. Role includes serving customers, taking payments and using kitchen equipment to prepare food.
-		      \vspace{-.1cm}
-		\item Developed culinary skills along with conversational and transactional skills. Working in a high pressure environment requires good time management and task prioritisation.
-	\end{itemize}
-	\vspace{-.5cm}
+	% \subsection{Hillside Fisheries, Ackworth, Pontefract\hfill June 2021-September 2023}
+	% \vspace{-.1cm}
+	% \begin{itemize}
+	% 	\item Work in the kitchen and on front of house serving and preparing fresh fish and chips. Role includes serving customers, taking payments and using kitchen equipment to prepare food.
+	% 	      \vspace{-.1cm}
+	% 	\item Developed culinary skills along with conversational and transactional skills. Working in a high pressure environment requires good time management and task prioritisation.
+	% \end{itemize}
+	% \vspace{-.5cm}
+	%
 
 
 
-
-	\section{Research}
-
-	\subsection{\textit{Cluster-Based Short Term Load Forecasting for Low Voltage Networks Using Neural and Statistical Models}\hfill CIRED, 2025}
-	H. Groves \& I. Middleton
+	% \section{Research}
+	%
+	% \subsection{\textit{Cluster-Based Short Term Load Forecasting for Low Voltage Networks Using Neural and Statistical Models}\hfill CIRED, 2025}
+	% H. Groves \& I. Middleton
 
 \end{minipage}
 \hspace{0.5cm}
@@ -160,27 +233,33 @@
 
 			\item Python 3
 			\item Rust
+			\item R
+			\item numpy / pandas / scikit
+			\item tensorflow / pytorch
+			\item matplotlib / seaborn
 			\item C/C++
 			\item TypeScript
-			\item React.JS
-			\item Next.JS
-			\item Node.JS
-			\item OCaml
+			\item React.JS / Next.JS
 			\item Java
-
 
 		\end{itemize}
 
 		\subsection{Additional Technologies:}
 		\begin{itemize}[leftmargin=*]
-			\item Git / GitHub
 			\item GNU/Linux
 			\item LaTeX
-			\item MongoDB
+			\item Git / GitHub
 			\item SQL (PostGreSQL)
+			\item MongoDB
 			\item HTML/CSS
 			\item tailwindcss
 			\item Access / Excel
+		\end{itemize}
+
+		\subsection{Languages:}
+		\begin{itemize}[leftmargin=*]
+			\item English (Native)
+			\item German (B1)
 		\end{itemize}
 
 	\end{tcolorbox}
