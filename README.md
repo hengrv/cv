@@ -1,2 +1,2 @@
 ### hengrv/cv
-read [here](main.pdf) :)
+read [here](cv.pdf) :)
