@@ -1,7 +1,7 @@
 \documentclass[9pt]{extarticle}
 \usepackage{multicol}
 \usepackage{titlesec}
-\usepackage[margin=0.5in]{geometry}
+\usepackage[margin=0.3in]{geometry}
 \usepackage{fontenc}
 \usepackage{csquotes}
 \usepackage{verbatim}
@@ -130,36 +130,38 @@
 	\raggedright
 
 	\section{Work Experience}
-	\subsection{\large Northern Powergrid}
+	\subsection{\large Northern Powergrid --- \normalsize\textit {Returning Summer Internship}}
 
 	\resetcvcount % Start tracking dots
 	% Col 1: Narrow, Centered (for dot). Col 2: Content
 	\begin{tabularx}{\textwidth}{@{} >{\centering}p{1.5em} @{} X @{}}
 
+	\cventry{\textit{Data Scientist (DSO)}\hfill June--September 2026}{\item{Designed a shared development framework for an expanding team of data scientists, built on Reproducible Analytical Pipeline (RAP) principles and integrated into CI/CD pipelines on Azure DevOps, with standardised logging and configuration management, resulting in streamlined onboarding and collaboration.}
+
+	\item Migrated 2 legacy manual processes previously in PowerBI/Excel to RAP pipelines, reducing run time and manual effort from multiple days work to a few minutes.
+		}	
+
 		% JOB 1
-		\cventry{\textit{Data Scientist (DSO)}\hfill May-September 2025}
+		\cventry{\textit{Data Scientist (DSO)}\hfill May--September 2025}
 		{
-			\item Built a graph-based \textbf{simulation tool} to model high-voltage power networks, in both normal and abnormal conditions.
-			\item Used historical and real-time data to simulate network and asset performance with a bottom-up approach, rather than a top-down approach previously used for such analysis.
-			\item Tool uses future scenarios to account for the different ways the power grid may evolve looking to 2050.
+		\item Built a graph-based simulation tool modelling high-voltage networks under normal and fault conditions, used by many teams for both network planning and predicting LCT rollout.
+		\item Replaced a top-down approach with bottom-up simulation from historical and real-time asset data, enabling finer-grained analysis.
+		\item Modelled grid evolution to 2050 under 4 future energy scenarios.
 		}
 
 		% JOB 2
-		\cventry{\textit{Data Scientist (DSO)}\hfill May-September 2024}
+		\cventry{\textit{Data Scientist (DSO)}\hfill May--September 2024}
 		{
-			\item Designed and architected an end-to-end \textbf{machine learning} solution to predict short-term distribution substation load.
-			\item Built a \textbf{robust}, \textbf{efficient} and \textbf{scalable} data pipeline to ingest \textbf{half-hourly} meter readings from $\sim$ 800 substations, filling gaps using AKIMA and lag-based methods.
-			\item Used DTW K-Means \textbf{clustering} to find load profiles; proved that models trained on one member of the cluster can effectively predict all members.
+		\item Designed an end-to-end ML pipeline forecasting short-term load across ~800 distribution substations from half-hourly meter data, with gap-filling via Akima interpolation and lag-based methods, used for network planning and procuring flex.
+			\item Clustered load profiles with DTW k-means and showed that one model per cluster generalised across its members, reducing the number of models from ~800 to 6.			
 			\item Designed and tuned both \textbf{TCN} and \textbf{BiTCN} neural-networks, for each cluster, with carefully selected \textbf{exogenous features} boosting model performance.
-			\item Wrote a formal research paper outlining my work and findings to present at \textit{CIRED}.\vspace{-.15cm}		}
-
+		}
 		% JOB 3
-		\cventry{\textit{Data Analyst (System Forecasting)}\hfill May-August 2023}
+		\cventry{\textit{Data Analyst (System Forecasting)}\hfill May--August 2023}
 		{
 
-			\item Combined numerous data sources with \textbf{SQL} and \textbf{Python} scripting to design and implement a statistical model for predicting the demand of almost \textbf{4 million} customers on low-voltage electrical distribution networks.
-			\item Created a dashboard in Excel from the output, and created visualizations for presentations to the wider team and executives.
-			\item Extracted and processed data for, and collaborated with other colleagues on regulatory submissions under very tight deadlines whilst also working on the model.
+			\item Built a statistical demand model for ~4M customers on low-voltage networks using SQL and Python, informing short-term and long-term business planning.
+			\item Prepared data for regulatory submissions to tight deadlines alongside model development.
 		}
 	\end{tabularx}
 
@@ -173,7 +175,7 @@
 	\vspace{-.15cm}
 
 	\section{Conference/Oral Presentations}
-	Robertson, B-A*; Jackson, L.; Groves, H.; and Hance, J.R. \textit{Emotional Modulation of Temporal Order Memory in Childhood: A Quantum-Informed Account}. At Quantum Information and Probability: from Foundations to Engineering (QIP26), xx June 2026. Växjö, Sweden. *presenter
+	Robertson, B-A*; Jackson, L.; Groves, H.; and Hance, J.R. \textit{Emotional Modulation of Temporal Order Memory in Childhood: A Quantum-Informed Account}. At Quantum Information and Probability: from Foundations to Engineering (QIP26), 10 June 2026. Växjö, Sweden. *presenter
 
 	% \subsection{``CLAuDE'' - Accessible and modular GCM (Global Climate Model)}
 	% Project manage a large-scale open-source climate model CLAuDE (Climate Analysis using Digital Estimations), written in Python.
