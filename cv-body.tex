@@ -1,0 +1,290 @@
+% =====================================================================
+%  Shared CV body. Do not compile this file directly:
+%  compile cv-ds.tex (data science) or cv-research.tex (research/PhD).
+% =====================================================================
+\providecommand{\cvversion}{ds}
+
+\documentclass[9pt]{extarticle}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.3in]{geometry}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{csquotes}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage[symbol]{footmisc}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{tabularx}
+\usepackage{etoolbox}
+\usepackage[hidelinks, final]{hyperref}
+
+% ---------------------------------------------------------------------
+%  Version switch
+%   \dsonly{...}        appears only in the data science CV
+%   \rsonly{...}        appears only in the research CV
+%   \pick{DS}{Research} chooses wording per version
+% ---------------------------------------------------------------------
+\newtoggle{research}
+\ifdefstring{\cvversion}{research}{\toggletrue{research}}{\togglefalse{research}}
+\newcommand{\dsonly}[1]{\iftoggle{research}{}{#1}}
+\newcommand{\rsonly}[1]{\iftoggle{research}{#1}{}}
+\newcommand{\pick}[2]{\iftoggle{research}{#2}{#1}}
+
+% ---------------------------------------------------------------------
+%  Styling
+% ---------------------------------------------------------------------
+\definecolor{Headings}{HTML}{577359}
+\definecolor{grey}{gray}{0.95}
+\definecolor{hg}{HTML}{577359}
+
+\titleformat{\section}{\Large\bfseries}{}{0em}{}[\color{Headings}{\titlerule[1.2pt]}]
+\titleformat{\subsection}{\bfseries}{}{0em}{}
+
+\setlist[itemize]{label={\color{gray}\scriptsize\textbullet}, nosep, itemsep=3pt, topsep=3pt, leftmargin=1em}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\setlength{\parindent}{0pt}
+
+% ---------------------------------------------------------------------
+%  Timeline for work entries
+% ---------------------------------------------------------------------
+\newcounter{cvcount}
+\newcommand{\resetcvcount}{\setcounter{cvcount}{0}}
+
+\newcommand{\timelinedot}{%
+    \stepcounter{cvcount}%
+    \begin{tikzpicture}[remember picture, overlay, baseline=-0.7ex]
+      \node[circle, fill=hg, inner sep=1pt] (currentdot) {};
+        \ifnum\value{cvcount}=1
+            \node[coordinate] (tls) at (currentdot) {};
+        \fi
+        \node[coordinate] (tle) at (currentdot) {};
+    \end{tikzpicture}%
+}
+
+\newcommand{\drawtimeline}{%
+    \begin{tikzpicture}[remember picture, overlay]
+        \draw[hg, line width=0.5pt] (tls) -- (tle);
+    \end{tikzpicture}%
+}
+
+% Args: {Title + dates}{Bullets}
+\newcommand{\cventry}[2]{
+    \timelinedot &
+    \textbf{#1} \\
+    & \vspace{-4pt}
+      \begin{itemize} #2 \end{itemize} \\[8pt]
+}
+
+\renewcommand{\maketitle}{
+	\begin{center}
+		{\huge\bfseries HENRY GROVES\\}
+		\vspace{.5em}
+		{\large hengro44@gmail.com | 07392 072855 | \href{https://github.com/hengrv}{github.com/hengrv} | \href{https://www.linkedin.com/in/hengrv/}{linkedin.com/in/hengrv}}
+	\end{center}
+}
+
+% ---------------------------------------------------------------------
+%  Shared content blocks
+% ---------------------------------------------------------------------
+\newcommand{\me}{\textbf{Groves, H.}}
+
+\newcommand{\publist}{%
+	\begin{itemize}
+		\item \me, Jackson, L.F., Robertson, B.-A., and Hance, J.R.
+		      \textit{Modelling Emotional Memory in Children with Tensor Networks}.
+		      Preprint, \href{https://arxiv.org/abs/2606.28470}{arXiv:2606.28470}, 2026.
+		\rsonly{\item Robertson, B.-A.*, Jackson, L., \me, and Hance, J.R.
+		      \textit{Emotional Modulation of Temporal Order Memory in Childhood: A Quantum-Informed Account}.
+		      Oral presentation, QIP26, Växjö, Sweden, June 2026. {\footnotesize *presenter}}
+	\end{itemize}%
+}
+
+\begin{document}
+\thispagestyle{empty}
+\maketitle
+
+% =====================================================================
+%  EDUCATION (full width)
+% =====================================================================
+\vspace{-.2cm}
+\begin{minipage}{0.97\textwidth}
+	\section{Education}
+	\subsection{Newcastle University \hfill 2023--2027}
+	\vspace{-.2cm}
+	\begin{itemize}
+		\item \textbf{M.Sc.\ + B.Sc.\ (Hons) Computer Science}
+		\item \textbf{B.Sc.\ dissertation:} \textit{Quantum-Inspired Models of Emotional Memory}, mark 81 (First)%
+		      \rsonly{. Supervised by Dr.~J.R.~Hance; developed into a co-authored preprint}
+	\end{itemize}
+	\vspace{-.4cm}
+	\subsection{Pontefract New College \hfill 2021--2023}
+	\vspace{-0.2cm}
+	\begin{itemize}
+		\item \textbf{A Levels:} Mathematics (\textbf{A*}), Further Mathematics (\textbf{A}), Computer Science (\textbf{A}), Physics (\textbf{A})
+		\item \textbf{EPQ:} ``To what extent will quantum computing replace high performance computing in computational biology?'' (\textbf{A})
+	\end{itemize}
+	\dsonly{%
+	\vspace{-.4cm}
+	\subsection{Carleton High School, Pontefract \hfill 2016--2021}
+	\vspace{-0.6cm}
+	\begin{multicols}{3}
+		\begin{itemize}
+			\item \textbf{GCSEs:} 5 $\times$ grade 9, 3 $\times$ grade 8
+			\item \textbf{BTECs:} \textbf{D*2}, \textbf{D2}
+		\end{itemize}
+	\end{multicols}
+	}
+
+\end{minipage}
+
+% Research CV: publications and research experience up front, full width
+\rsonly{%
+	\section{Publications \& Presentations}
+	\publist
+	\section{Research Experience}
+	\subsection{B.Sc.\ Dissertation, Quantum Group, Newcastle University \hfill 2025--2026}
+	\vspace{-.1cm}
+	\begin{itemize}
+		\item Built quantum-inspired matrix product state (MPS) models of children's temporal order memory, encoding emotional valence and recall outcome as a joint composite-site index.
+		\item Compared binary (qubit), three-state (qutrit) and valence-primed models with classical baselines (Naive Bayes, Markov chain) under 5-fold cross-validation; the valence-primed model reached 77.98\% accuracy.
+		\item Implemented in Julia with ITensors.jl; extended into a co-authored preprint and a QIP26 conference talk.
+	\end{itemize}
+}
+
+\vspace{.2cm}
+
+% =====================================================================
+%  LEFT COLUMN (DS CV) / full width (research CV)
+% =====================================================================
+\dsonly{\begin{minipage}[t]{0.65\textwidth}\vspace{0pt}}
+	\raggedright
+
+	% ---------------- Work experience (both) ---------------------------
+	\section{\pick{Work Experience}{Industry Experience}}
+	\subsection{\large Northern Powergrid --- \normalsize\textit{Returning Summer Internship}}
+
+	\resetcvcount
+	\begin{tabularx}{\textwidth}{@{} >{\centering}p{1.5em} @{} X @{}}
+
+		\cventry{\textit{Data Scientist (DSO)}\hfill June--September 2026}{
+			\item \pick
+			      {Designed a shared development framework for a growing data science team, built on Reproducible Analytical Pipeline (RAP) principles, with standardised logging, configuration and CI/CD on Azure DevOps.}
+			      {Designed a shared development framework for the data science team, built on Reproducible Analytical Pipeline (RAP) principles, with standardised logging, configuration management and CI/CD.}
+			\item Migrated 2 legacy manual Power BI/Excel processes to RAP pipelines, cutting run time from several days to a few minutes.
+		}
+
+		\cventry{\textit{Data Scientist (DSO)}\hfill May--September 2025}{
+			\item \pick
+			      {Built a graph-based simulation tool modelling high-voltage networks under normal and fault conditions, used across teams for network planning and forecasting low-carbon technology (LCT) uptake.}
+			      {Developed a bottom-up, graph-based simulation of high-voltage networks under normal and fault conditions from historical and real-time asset data, replacing a top-down approach; used across teams for network planning.}
+			\dsonly{\item Replaced a top-down approach with bottom-up simulation from historical and real-time asset data, enabling finer-grained analysis.}
+			\item Modelled grid evolution to 2050 under 4 future energy scenarios.
+		}
+
+		\cventry{\textit{Data Scientist (DSO)}\hfill May--September 2024}{
+			\item \pick
+			      {Designed an end-to-end ML pipeline forecasting short-term load across $\sim$800 distribution substations from half-hourly meter data, with gap-filling via Akima interpolation and lag-based methods; used for network planning and procuring flexibility.}
+			      {Built an end-to-end pipeline forecasting short-term load across $\sim$800 substations from half-hourly meter data, with Akima and lag-based gap-filling.}
+			\item \pick
+			      {Clustered load profiles with DTW k-means and showed that one model per cluster generalised across its members, reducing the number of models from $\sim$800 to 6.}
+			      {Showed that substations clustered by DTW k-means share forecastable structure: one model per cluster generalised across all members, reducing $\sim$800 models to 6.}
+			\item \pick
+			      {Designed and tuned TCN and BiTCN neural networks for each cluster, with selected exogenous features improving accuracy.}
+			      {Designed and tuned TCN and BiTCN models with exogenous features; results presented at CIRED 2025 as first author.}
+		}
+
+		\cventry{\textit{Data Analyst (System Forecasting)}\hfill May--August 2023}{
+			\item Built a statistical demand model for $\sim$4M customers on low-voltage networks using SQL and Python, informing short- and long-term business planning.
+			\dsonly{\item Prepared data for regulatory submissions under tight deadlines.}
+		}
+	\end{tabularx}
+
+	\drawtimeline
+
+	\vspace{-.7cm}
+
+	% ---------------- Projects (DS CV only) ----------------------------
+	\dsonly{%
+	\section{Projects}
+	\subsection{``Biggmarket'' --- item-swapping app promoting sustainability}
+	Full-stack web app built with Next.js, TypeScript, tRPC and Tailwind CSS on PostgreSQL/Prisma, featuring a swipe interface, real-time messaging, Google OAuth and a user review system.
+	}
+
+\dsonly{\end{minipage}\hspace{0.5cm}}
+% =====================================================================
+%  RIGHT COLUMN: skills box
+% =====================================================================
+\dsonly{%
+\begin{minipage}[t]{0.3\textwidth}
+	\vspace{0pt}\raggedright
+	\begin{tcolorbox}[colback=grey]
+
+		\section{Key Skills}
+		\begin{itemize}[leftmargin=*]
+			\item Machine learning \& time-series forecasting
+			\item Statistical modelling
+			\item Data engineering \& RAP
+			\item CI/CD \& deployment
+			\item Graph-based simulation
+			\item Data exploration \& visualisation
+		\end{itemize}
+
+		\subsection{Programming:}
+		\begin{itemize}[leftmargin=*]
+			\item Python
+			\item SQL
+			\item Julia
+			\item R
+			\item Rust
+			\item C/C++
+			\item TypeScript
+			\item Java
+		\end{itemize}
+
+		\subsection{Libraries / Frameworks:}
+		\begin{itemize}[leftmargin=*]
+			\item numpy / pandas / scikit-learn
+			\item PyTorch / TensorFlow
+			\item matplotlib / seaborn
+			\item React / Next.js
+		\end{itemize}
+
+		\subsection{Tools:}
+		\begin{itemize}[leftmargin=*]
+			\item Git / GitHub
+			\item GNU/Linux
+			\item Azure DevOps
+			\item PostgreSQL / MongoDB
+			\item Power BI / Excel
+		\end{itemize}
+
+		\subsection{Languages:}
+		\begin{itemize}[leftmargin=*]
+			\item English (Native)
+			\item German (B1)
+		\end{itemize}
+
+	\end{tcolorbox}
+\end{minipage}
+}
+
+% DS CV: publications full width under both columns
+\dsonly{%
+	\section{Publications}
+	\publist
+}
+
+% Research CV: skills as a compact full-width section
+\rsonly{%
+	\section{Skills}
+	\begin{itemize}
+		\item \textbf{Research:} tensor networks (MPS), quantum-inspired and probabilistic modelling, time-series forecasting, ML, model evaluation
+		\item \textbf{Programming:} Python (numpy, pandas, scikit-learn, PyTorch), Julia (ITensors.jl), SQL, R, Rust, C/C++
+		\item \textbf{Tools:} Git, GNU/Linux, PostgreSQL, \LaTeX \quad \textbf{Languages:} English (native), German (B1)
+	\end{itemize}
+}
+
+\end{document}

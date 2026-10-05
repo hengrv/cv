@@ -1,2 +1,3 @@
 ### hengrv/cv
-read [here](cv.pdf) :)
+[academic](cv-research.pdf) cv
+[data science / software engineering](cv-ds.pdf) cv
