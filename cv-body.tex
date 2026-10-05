@@ -20,21 +20,12 @@
 \usepackage{etoolbox}
 \usepackage[hidelinks, final]{hyperref}
 
-% ---------------------------------------------------------------------
-%  Version switch
-%   \dsonly{...}        appears only in the data science CV
-%   \rsonly{...}        appears only in the research CV
-%   \pick{DS}{Research} chooses wording per version
-% ---------------------------------------------------------------------
 \newtoggle{research}
 \ifdefstring{\cvversion}{research}{\toggletrue{research}}{\togglefalse{research}}
 \newcommand{\dsonly}[1]{\iftoggle{research}{}{#1}}
 \newcommand{\rsonly}[1]{\iftoggle{research}{#1}{}}
 \newcommand{\pick}[2]{\iftoggle{research}{#2}{#1}}
 
-% ---------------------------------------------------------------------
-%  Styling
-% ---------------------------------------------------------------------
 \definecolor{Headings}{HTML}{577359}
 \definecolor{grey}{gray}{0.95}
 \definecolor{hg}{HTML}{577359}
@@ -47,9 +38,7 @@
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 \setlength{\parindent}{0pt}
 
-% ---------------------------------------------------------------------
-%  Timeline for work entries
-% ---------------------------------------------------------------------
+
 \newcounter{cvcount}
 \newcommand{\resetcvcount}{\setcounter{cvcount}{0}}
 
@@ -70,7 +59,6 @@
     \end{tikzpicture}%
 }
 
-% Args: {Title + dates}{Bullets}
 \newcommand{\cventry}[2]{
     \timelinedot &
     \textbf{#1} \\
@@ -86,9 +74,6 @@
 	\end{center}
 }
 
-% ---------------------------------------------------------------------
-%  Shared content blocks
-% ---------------------------------------------------------------------
 \newcommand{\me}{\textbf{Groves, H.}}
 
 \newcommand{\publist}{%
@@ -106,9 +91,6 @@
 \thispagestyle{empty}
 \maketitle
 
-% =====================================================================
-%  EDUCATION (full width)
-% =====================================================================
 \vspace{-.2cm}
 \begin{minipage}{0.97\textwidth}
 	\section{Education}
@@ -140,7 +122,6 @@
 
 \end{minipage}
 
-% Research CV: publications and research experience up front, full width
 \rsonly{%
 	\section{Publications \& Presentations}
 	\publist
@@ -156,13 +137,9 @@
 
 \vspace{.2cm}
 
-% =====================================================================
-%  LEFT COLUMN (DS CV) / full width (research CV)
-% =====================================================================
 \dsonly{\begin{minipage}[t]{0.65\textwidth}\vspace{0pt}}
 	\raggedright
 
-	% ---------------- Work experience (both) ---------------------------
 	\section{\pick{Work Experience}{Industry Experience}}
 	\subsection{\large Northern Powergrid --- \normalsize\textit{Returning Summer Internship}}
 
@@ -206,7 +183,6 @@
 
 	\vspace{-.7cm}
 
-	% ---------------- Projects (DS CV only) ----------------------------
 	\dsonly{%
 	\section{Projects}
 	\subsection{``Biggmarket'' --- item-swapping app promoting sustainability}
@@ -214,9 +190,7 @@
 	}
 
 \dsonly{\end{minipage}\hspace{0.5cm}}
-% =====================================================================
-%  RIGHT COLUMN: skills box
-% =====================================================================
+
 \dsonly{%
 \begin{minipage}[t]{0.3\textwidth}
 	\vspace{0pt}\raggedright
@@ -271,13 +245,11 @@
 \end{minipage}
 }
 
-% DS CV: publications full width under both columns
 \dsonly{%
 	\section{Publications}
 	\publist
 }
 
-% Research CV: skills as a compact full-width section
 \rsonly{%
 	\section{Skills}
 	\begin{itemize}
